@@ -1,7 +1,18 @@
-<div class="add_task">Добавление</div>
-<div class="tasks">
-    Задачи
-    <ul>
-        <li *ngFor = "#task of tasks">{{task.title +" "+ task.description}} </li>
-        </ul>
+<div class="add_task" style="display:flex;flex-direction:column; margin:auto;width:50%;">
+    <div style="margin:auto">Добавление</div>
+    <input placeholder="Title" #titleInput style="margin-top:10px; border-radius: 5px;heigth:35px;padding-left:10px;">
+    <input placeholder="Description" #descInput style="margin-top:10px; border-radius: 5px;heigth:35px;padding-left:10px;">
+    <div>Done: <input type="checkbox" #checkInput style="margin-top:3px;"></div>
+    <input type="button" value="Add" 
+    (click)="add(titleInput.value, descInput.value, checkInput.checked)"
+    style="width:40%;margin:auto;border-radius: 5px;background-color: blue;">
+</div>
+<div class="tasks" style="border:1px solid black;border-radius: 5px;margin-left:auto; margin-right:auto; margin-top: 20px;">
+    <div style="margin:auto">Задачи</div>
+
+    <div *ngFor="#task of tasks">
+         <input type="checkbox" [checked]="task.done">
+        {{task.title +" "+ task.description}}
+    </div>
+
 </div>

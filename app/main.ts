@@ -19,6 +19,10 @@ class AppCompoment{
             this.tasks.push(new Task('2' ,'desc2',true));
             this.tasks.push(new Task('3','desc3',false));
         }
+
+        add(title:string,description:string,checked:boolean){
+            this.tasks.push(new Task(title,description,checked));
+        }
 }
 
 bootstrap(AppCompoment);
