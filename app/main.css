@@ -1,11 +1,63 @@
-add_task{
-    margin-left: auto;
-    margin-right: 100px;
-    border: 1px;
+.add_task{
+    display:flex;
+    flex-direction:column; 
+    margin:auto;
+    width:50%;
 }
-tasks{
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px;
-    margin-top: 10px;
+.tasks{
+    border:1px solid black;
+    border-radius: 5px;
+    margin-left:auto;
+     margin-right:auto; 
+     margin-top: 20px;
 }
+
+.text{
+    margin: auto;
+    text-align: center;
+}
+
+.input{
+    margin-top:10px; 
+    border-radius: 5px;
+    height:25px;
+    padding-left:10px;
+}
+
+tr{
+    width: 90vw;
+}
+
+.button{
+    width:40%;
+    margin:auto;
+    border-radius: 5px;
+    background-color: #FFDAB9;
+    border:0px;
+    height: 25px;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+tr:nth-child(odd) {
+    background-color: #FFFACD;
+}
+
+.button_item{
+    width:100%;
+    margin:auto;
+    border-radius: 5px;
+    background-color: #FFDAB9;
+    border:0px;
+    height: 25px;
+    text-align: center;
+}
+
+.item{
+    
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
