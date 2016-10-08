@@ -13,7 +13,7 @@ import {Task} from './task';
 
 class AppCompoment {
     tasks_done: Task[] = [];
-    tasks_not_done: Task[]=[];
+    tasks_not_done: Task[] = [];
 
     constructor() {
         this.tasks_not_done.push(new Task('1', 'desc1', false));
@@ -23,10 +23,10 @@ class AppCompoment {
     }
 
     add(title: string, description: string, checked: boolean) {
-        if(checked){
+        if (checked) {
             this.tasks_done.push(new Task(title, description, checked));
         }
-        else{
+        else {
             this.tasks_not_done.push(new Task(title, description, checked));
         }
     }
@@ -45,6 +45,19 @@ class AppCompoment {
                     this.tasks_not_done.splice(index, 1);
                 }
             }
+        }
+    }
+
+    toggle(task: Task) {
+        let tmp =new  Task(task.title,task.description,task.done);
+        
+        tmp.done = !tmp.done;
+        this.delete (task);
+        if (tmp.done) {
+            this.tasks_done.push(tmp);
+        }
+        else {
+            this.tasks_not_done.push(tmp);
         }
     }
 }

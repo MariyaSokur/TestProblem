@@ -31,7 +31,7 @@
     <table style="margin-top:20px;">
         <tr *ngFor="#task of tasks_not_done" class="item">
             <td style="width:5%">
-                <input type="checkbox" [checked]="task.done">
+                <input type="checkbox" [checked]="task.done" (change)="toggle(task)">
             </td>
             <td style="width:20%;">
                 <div class="text"> {{task.title}}</div>
