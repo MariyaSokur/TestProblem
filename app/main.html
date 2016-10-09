@@ -2,18 +2,22 @@
     <div class="text">Добавление</div>
     <input placeholder="Title" #titleInput class="input">
     <input placeholder="Description" #descInput class="input">
-    <div>Done: <input type="checkbox" #checkInput style="margin-top:7px;"></div>
+    <div class="text">Done: <input type="checkbox" #checkInput style="margin-top:7px;"></div>
     <input type="button" value="Add" (click)="add(titleInput.value, descInput.value, checkInput.checked)" class="button">
 </div>
+<hr>
+ <input  class="text" type = "button" style="backgroung-color:red" (click)="changeTab()" value="Задачи выполненные">
+  <input  type="button" class="text" value = "Задачи невыполненные" style="backgroung-color:red" (click)="changeTab()">
  <div>
-     <div  class="text" style="backgroung-color:red" (click)="changeTab()">Задачи выполненные</div>
-<span class="tasks" *ngIf="pageType==0">
+    <div class="tasks" *ngIf="pageType==0">
    
     <table>
         <tr *ngFor="#task of tasks_done" class="item">
-            <td style="width:5%">
-                <input type="checkbox" [checked]="task.done" (change)="toggle(task)">
-            </td>
+            
+            <select (change)="toggle(task)" >
+                    <option >TODO</option>
+                    <option selected disabled>Done</option>
+                </select>
             <td style="width:20%;">
                 <div class="text"> {{task.title}}</div>
             </td>
@@ -27,17 +31,18 @@
     </table>
 
     
-</span>
+</div>
 </div>
 <div >
-    <div  class="text"  style="backgroung-color:red" (click)="changeTab()">Задачи невыполненные</div>
-<span class="tasks" *ngIf="pageType==1">
+   
+<div class="tasks" *ngIf="pageType==1">
     
     <table style="margin-top:20px;">
         <tr *ngFor="#task of tasks_not_done" class="item">
-            <td style="width:5%">
-                <input type="checkbox" [checked]="task.done" (change)="toggle(task)">
-            </td>
+            <select (change)="toggle(task)" >
+                    <option selected disabled>TODO</option>
+                    <option >Done</option>
+                </select>
             <td style="width:20%;">
                 <div class="text"> {{task.title}}</div>
             </td>
@@ -49,5 +54,5 @@
             </td>
         </tr>
     </table>
-</span>
+</div>
 </div>
