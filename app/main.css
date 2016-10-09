@@ -28,6 +28,10 @@ tr{
     width: 90vw;
 }
 
+body{
+    max-width: 600px;
+}
+
 .button{
     width:40%;
     margin:auto;

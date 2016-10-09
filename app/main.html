@@ -1,6 +1,53 @@
-<nav>
-    <a [routerLink]="['Done']">Done</a>
-    <a [routerLink]="['Todo']">Todo</a>
-</nav>
+<div class="add_task">
+    <div class="text">Добавление</div>
+    <input placeholder="Title" #titleInput class="input">
+    <input placeholder="Description" #descInput class="input">
+    <div>Done: <input type="checkbox" #checkInput style="margin-top:7px;"></div>
+    <input type="button" value="Add" (click)="add(titleInput.value, descInput.value, checkInput.checked)" class="button">
+</div>
+ <div>
+     <div  class="text" style="backgroung-color:red" (click)="changeTab()">Задачи выполненные</div>
+<span class="tasks" *ngIf="pageType==0">
+   
+    <table>
+        <tr *ngFor="#task of tasks_done" class="item">
+            <td style="width:5%">
+                <input type="checkbox" [checked]="task.done" (change)="toggle(task)">
+            </td>
+            <td style="width:20%;">
+                <div class="text"> {{task.title}}</div>
+            </td>
+            <td style="width:50%;">
+                <div class="text"> {{task.description}}</div>
+            </td>
+            <td style="width:20%">
+                <input type="button" class="button_item" value="Delete" (click)="delete(task)">
+            </td>
+        </tr>
+    </table>
 
-<router-outlet></router-outlet>
+    
+</span>
+</div>
+<div >
+    <div  class="text"  style="backgroung-color:red" (click)="changeTab()">Задачи невыполненные</div>
+<span class="tasks" *ngIf="pageType==1">
+    
+    <table style="margin-top:20px;">
+        <tr *ngFor="#task of tasks_not_done" class="item">
+            <td style="width:5%">
+                <input type="checkbox" [checked]="task.done" (change)="toggle(task)">
+            </td>
+            <td style="width:20%;">
+                <div class="text"> {{task.title}}</div>
+            </td>
+            <td style="width:50%;">
+                <div class="text"> {{task.description}}</div>
+            </td>
+            <td style="width:20%">
+                <input type="button" class="button_item" value="Delete" (click)="delete(task)">
+            </td>
+        </tr>
+    </table>
+</span>
+</div>
