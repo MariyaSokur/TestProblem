@@ -3,7 +3,7 @@
 
 import {Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-import {Task} from './task';
+import {Task} from './data.service/task';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import {Done} from './done/done';
 import {Todo} from './todo/todo';
@@ -29,13 +29,15 @@ import {Todo} from './todo/todo';
         path: '/todo',
         name: 'Todo',
         component: Todo
+    } ,
+    {
+        path: '*',
+        name: 'Todo',
+        component: Todo
     }
 ])
 
 class AppCompoment {
-
-    constructor() {
-    }
 }
 
 bootstrap(AppCompoment);

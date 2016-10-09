@@ -9,7 +9,7 @@
     <table style="margin-top:20px;">
         <tr *ngFor="#task of tasks_not_done" class="item">
             <td style="width:5%">
-                <select (change)="toggle(task)" >
+                <select (change)="changeListener($event)" >
                     <option selected disabled>TODO</option>
                     <option >Done</option>
                 </select>

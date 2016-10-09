@@ -1,45 +1,49 @@
-import {Component, Output, EventEmitter} from 'angular2/core';
-import {Task} from '../task';
+import {Component, Output, EventEmitter, OnInit} from 'angular2/core';
+import {Task} from '../data.service/task';
 import {Todo} from '../todo/todo';
+import {HTTP_PROVIDERS, Http, Response} from 'angular2/http';
+import {tasks_done} from '../data.service/data';
+import {TaskService} from '../data.service/service';
 
 
 @Component({
     selector: 'done',
     templateUrl: './app/done/done.html',
-    styleUrls: ['app/main.css'],
-    providers: [Todo]
+    styleUrls: ['app/main.css']
 })
 
-export class Done {
+export class Done implements OnInit{
     //@Output() deleted_todo = new EventEmitter();
-    tasks_done: Task[] = [new Task('2', 'desc2', true),new Task('2', 'desc2', true)];
+    //result: Object;
+    tasks_done: Task[];/* = [new Task('2', 'desc2', true),new Task('2', 'desc2', true)];*/
     
+    
+    constructor(private service:TaskService){
+        this.tasks_done = [];
+        /*var json = Utilities.JSONLoader.loadFromFile("../docs/location_map.json");
+        var locations: Array<ILocationMap> = JSON.parse(json).location;*/
+        //this.result = {tasks_done:[]};
+        //http.get('./done.json').map((res: Response) => res.json()).subscribe(res => this.result = res);  
+       
+    }
 
-    constructor() {
-        
+    ngOnInit(){
+        this.tasks_done = this.service.getDone();
+    
     }
 
     add(title: string, description: string, checked: boolean) {
-        this.tasks_done.push(new Task(title, description, checked));
-    }
-
-    addTask(task: Task) {
-        console.log('emitted done!');
-        this.tasks_done.push(task);
+        this.service.addTask(new Task(title, description, checked), true);
+        
     }
 
     delete(task: Task) {
-        if (task) {
-            let index = this.tasks_done.indexOf(task);
-            if (index > -1) {
-                this.tasks_done.splice(index, 1);
-            }
-        }
+        this.service.deleteTask(task,true);
     }
 
     toggle(task: Task) {
         let tmp = new Task(task.title, task.description, task.done);
-        console.log('Delete done task');
+       // console.log('Delete done task');
         tmp.done = !tmp.done;
         this.delete(task);
         //this.deleted_todo.emit(tmp);
