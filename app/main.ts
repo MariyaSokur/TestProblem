@@ -2,6 +2,8 @@
 /// <reference path="../node_modules/angular2/typings/browser.d.ts"/>
 
 import {Component} from 'angular2/core';
+import {HTTP_PROVIDERS, XHRBackend} from 'angular2/http';
+import { InMemoryBaskEndService} from 'angular2-in-memory-web-api';
 import {bootstrap} from 'angular2/platform/browser';
 import {Task} from './data.service/task';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
@@ -14,8 +16,8 @@ import {Todo} from './todo/todo';
     templateUrl: './app/main.html',
     styleUrls: ['app/main.css'],
     directives: [ROUTER_DIRECTIVES],
-    providers: [
-        ROUTER_PROVIDERS,
+    providers: [ HTTP_PROVIDERS,
+        ROUTER_PROVIDERS
     ]
 })
 

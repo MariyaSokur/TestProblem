@@ -9,7 +9,8 @@ import {TaskService} from '../data.service/service';
 @Component({
     selector: 'done',
     templateUrl: './app/done/done.html',
-    styleUrls: ['app/main.css']
+    styleUrls: ['app/main.css'],
+    providers:[TaskService]
 })
 
 export class Done implements OnInit{
@@ -28,7 +29,7 @@ export class Done implements OnInit{
     }
 
     ngOnInit(){
-        this.tasks_done = this.service.getDone();
+        this.service.getDone().then(tasks_done => this.tasks_done = tasks_done);
     
     }
 
